@@ -18,10 +18,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
   origin: [process.env.FRONTEND_URL ,
-  "https://befirst-hr-consultancy.vercel.app/",
+  "https://befirst-hr-consultancy.vercel.app",
+  "https://www.befirsthr.com",
+    "https://befirst-hr-consultancy.vercel.app",
   "http://localhost:3000",
-  ],
-  credentials: true
+  ].filter(Boolean), 
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 app.use(helmet());
 app.use(morgan("dev"));
